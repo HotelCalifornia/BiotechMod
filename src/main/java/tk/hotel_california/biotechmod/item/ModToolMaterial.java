@@ -1,5 +1,8 @@
 package tk.hotel_california.biotechmod.item;
 
+import net.minecraft.item.Item;
+import net.minecraft.init.Items;
+
 //Girl do you know Java?
 //Because your method body is sexy ;)
 public enum ModToolMaterial {
@@ -10,6 +13,7 @@ public enum ModToolMaterial {
     private final float efficiencyOnProperMaterial;
     private final float damageVsEntity;
     private final int enchantability;
+    public Item customCraftingMaterial = null;
     private ModToolMaterial(int par3, int par4, float par5, float par6, int par7)
     {
         this.harvestLevel = par3;
@@ -55,4 +59,10 @@ public enum ModToolMaterial {
         return this.enchantability;
     }
 
+    public Item func_150995_f() {
+        switch (this) {
+            case BIOTIC_TIER_ONE: return Items.bone;
+            default: return customCraftingMaterial;
+        }
+    }
 }

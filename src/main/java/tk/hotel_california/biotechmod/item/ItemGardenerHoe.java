@@ -10,9 +10,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
+
+import java.util.List;
 
 public class ItemGardenerHoe extends Item {
     protected ModToolMaterial theToolMaterial;
@@ -72,8 +75,7 @@ public class ItemGardenerHoe extends Item {
      * Returns True is the item is renderer in full 3D when hold.
      */
     @SideOnly(Side.CLIENT)
-    public boolean isFull3D()
-    {
+    public boolean isFull3D() {
         return true;
     }
 
@@ -81,8 +83,12 @@ public class ItemGardenerHoe extends Item {
      * Returns the name of the material this tool is made from as it is declared in Item.ToolMaterial (meaning diamond
      * would return "EMERALD")
      */
-    public String getToolMaterialName()
-    {
+    public String getToolMaterialName() {
         return this.theToolMaterial.toString();
+    }
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        par3List.add(String.format("%sAn unusually efficient hoe.", EnumChatFormatting.DARK_GREEN));
+        par3List.add(String.format("%sSeems to be a long-lasting alternative to stone.", EnumChatFormatting.DARK_GREEN));
     }
 }
