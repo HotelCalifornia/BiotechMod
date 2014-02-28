@@ -9,6 +9,7 @@ bin
 eclipse
 build
 out
+run
 
 .metadata
 .settings
