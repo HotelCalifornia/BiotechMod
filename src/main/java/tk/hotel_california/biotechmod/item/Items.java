@@ -11,15 +11,23 @@ public class Items {
     public static class declareItems {
         public static Item gardenerHoeItem;
         public static Item gardenerSwordItem;
+        public static Item gardenerHelmetItem;
+        public static Item gardenerChestplateItem;
+        public static Item gardenerLeggingsItem;
+        public static Item gardenerBootsItem;
         //todo add more items as I make 'em
     }
     public static void InitItems() {
         declareItems.gardenerHoeItem = new ItemGardenerHoe(ModToolMaterial.BIOTIC_TIER_ONE)
-        .setUnlocalizedName("gardenerHoe")
-        .setTextureName("biotechmod:gardenerHoe");
+                .setUnlocalizedName("gardenerHoe")
+                .setTextureName("biotechmod:gardenerHoe");
         declareItems.gardenerSwordItem = new ItemGardenerSword(ModToolMaterial.BIOTIC_TIER_ONE)
-        .setUnlocalizedName("gardenerSword")
-        .setTextureName("biotechMod:gardenerSword");
+                .setUnlocalizedName("gardenerSword")
+                .setTextureName("biotechmod:gardenerSword");
+        declareItems.gardenerHelmetItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 0)
+                .setUnlocalizedName("gardenerHelmet")
+                .setTextureName("biotechmod:gardenerHelmet");
+
     }
     public static void registerRecipes() {
         ItemStack tierOneHoe = new ItemStack(declareItems.gardenerHoeItem,1);
@@ -33,6 +41,11 @@ public class Items {
                 'x', net.minecraft.init.Items.flint,
                 'y', net.minecraft.init.Items.leather,
                 'z', net.minecraft.init.Items.bone);
+        ItemStack tierOneHelm = new ItemStack(declareItems.gardenerHelmetItem,1);
+        GameRegistry.addRecipe(tierOneHelm, "www", "xyx", "zzz",
+                'w', net.minecraft.init.Items.bone,
+                'x', net.minecraft.init.Items.leather,
+                'y', net.minecraft.init.Items.spider_eye);
     }
     public static void registerShapelessRecipes() {
 
