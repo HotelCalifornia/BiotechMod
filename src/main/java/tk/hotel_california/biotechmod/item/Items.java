@@ -27,6 +27,15 @@ public class Items {
         declareItems.gardenerHelmetItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 0)
                 .setUnlocalizedName("gardenerHelmet")
                 .setTextureName("biotechmod:gardenerHelmet");
+        declareItems.gardenerChestplateItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 1)
+                .setUnlocalizedName("gardenerChest")
+                .setTextureName("biotechmod:gardenerChest");
+        declareItems.gardenerLeggingsItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 2)
+                .setUnlocalizedName("gardenerLegs")
+                .setTextureName("biotechmod:gardenerLegs");
+        declareItems.gardenerBootsItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE,0 , 3)
+                .setUnlocalizedName("gardenerBoots")
+                .setTextureName("biotechmod:gardenerBoots");
 
     }
     public static void registerRecipes() {
@@ -42,10 +51,22 @@ public class Items {
                 'y', net.minecraft.init.Items.leather,
                 'z', net.minecraft.init.Items.bone);
         ItemStack tierOneHelm = new ItemStack(declareItems.gardenerHelmetItem,1);
-        GameRegistry.addRecipe(tierOneHelm, "www", "xyx", "zzz",
+        GameRegistry.addRecipe(tierOneHelm, "www", "xyx", "   ",
                 'w', net.minecraft.init.Items.bone,
                 'x', net.minecraft.init.Items.leather,
                 'y', net.minecraft.init.Items.spider_eye);
+        ItemStack tierOneChest = new ItemStack(declareItems.gardenerChestplateItem);
+        GameRegistry.addRecipe(tierOneChest, "w w", "xxx", "xxx",
+                'w', net.minecraft.init.Items.leather,
+                'x', net.minecraft.init.Items.bone);
+        ItemStack tierOneLegs = new ItemStack(declareItems.gardenerLeggingsItem);
+        GameRegistry.addRecipe(tierOneLegs, "www", "x x", "w w",
+                'w', net.minecraft.init.Items.bone,
+                'x', net.minecraft.init.Items.leather);
+        ItemStack tierOneBoots = new ItemStack(declareItems.gardenerBootsItem);
+        GameRegistry.addRecipe(tierOneBoots, "w w", "x x", "   ",
+                'w', net.minecraft.init.Items.leather,
+                'x', net.minecraft.init.Items.bone);
     }
     public static void registerShapelessRecipes() {
 

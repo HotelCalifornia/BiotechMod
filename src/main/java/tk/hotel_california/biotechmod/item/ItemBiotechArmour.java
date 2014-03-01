@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.command.IEntitySelector;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBehaviorDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -78,6 +79,7 @@ public class ItemBiotechArmour extends Item {
         this.theArmourType = armourType;
         this.theRenderIndex = renderIndex;
         this.damageReduceAmount = material.getDamageReductionAmount(armourType);
+        this.setCreativeTab(CreativeTabs.tabCombat);
     }
     //this method won't ever do anything, it's just here for completeness
     @SideOnly(Side.CLIENT)
