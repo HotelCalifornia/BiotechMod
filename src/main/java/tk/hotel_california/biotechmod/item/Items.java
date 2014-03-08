@@ -5,9 +5,14 @@ package tk.hotel_california.biotechmod.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
+import tk.hotel_california.biotechmod.client.ClientProxy;
 
 public class Items {
+    public static ClientProxy proxy = new ClientProxy();
     public static class declareItems {
         public static Item gardenerHoeItem;
         public static Item gardenerSwordItem;
@@ -18,22 +23,26 @@ public class Items {
         //todo add more items as I make 'em
     }
     public static void InitItems() {
-        declareItems.gardenerHoeItem = new ItemGardenerHoe(ModToolMaterial.BIOTIC_TIER_ONE)
+        final ItemArmor.ArmorMaterial BIOTIC_TIER_ONE;
+        final ItemHoe.ToolMaterial BIOTIC_TIER_ONE_TOOL;
+        BIOTIC_TIER_ONE = EnumHelper.addArmorMaterial("BIOTIC_TIER_ONE", 10, new int[]{2, 5, 4, 1}, 1);
+        BIOTIC_TIER_ONE_TOOL = EnumHelper.addToolMaterial("BIOTIC_TIER_ONE_TOOL", 1, 250, 3.0F, 1.0F, 1);
+        declareItems.gardenerHoeItem = new ItemGardenerHoe(BIOTIC_TIER_ONE_TOOL)
                 .setUnlocalizedName("gardenerHoe")
                 .setTextureName("biotechmod:gardenerHoe");
-        declareItems.gardenerSwordItem = new ItemGardenerSword(ModToolMaterial.BIOTIC_TIER_ONE)
+        declareItems.gardenerSwordItem = new ItemGardenerSword(BIOTIC_TIER_ONE_TOOL)
                 .setUnlocalizedName("gardenerSword")
                 .setTextureName("biotechmod:gardenerSword");
-        declareItems.gardenerHelmetItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 0)
+        declareItems.gardenerHelmetItem = new ItemBiotechArmour(BIOTIC_TIER_ONE, proxy.addArmour("gardenerHelmet"), 0)
                 .setUnlocalizedName("gardenerHelmet")
                 .setTextureName("biotechmod:gardenerHelmet");
-        declareItems.gardenerChestplateItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 1)
+        declareItems.gardenerChestplateItem = new ItemBiotechArmour(BIOTIC_TIER_ONE, proxy.addArmour("gardenerChest"), 1)
                 .setUnlocalizedName("gardenerChest")
                 .setTextureName("biotechmod:gardenerChest");
-        declareItems.gardenerLeggingsItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE, 0, 2)
+        declareItems.gardenerLeggingsItem = new ItemBiotechArmour(BIOTIC_TIER_ONE, proxy.addArmour("gardenerLegs"), 2)
                 .setUnlocalizedName("gardenerLegs")
                 .setTextureName("biotechmod:gardenerLegs");
-        declareItems.gardenerBootsItem = new ItemBiotechArmour(ModArmourMaterial.BIOTIC_TIER_ONE,0 , 3)
+        declareItems.gardenerBootsItem = new ItemBiotechArmour(BIOTIC_TIER_ONE, proxy.addArmour("gardenerBoots"), 3)
                 .setUnlocalizedName("gardenerBoots")
                 .setTextureName("biotechmod:gardenerBoots");
 

@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -17,78 +18,26 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 import java.util.List;
 
-public class ItemGardenerHoe extends Item {
-    protected ModToolMaterial theToolMaterial;
-    public ItemGardenerHoe(ModToolMaterial toolMaterial) {
-        this.theToolMaterial = toolMaterial;
+public class ItemGardenerHoe extends ItemHoe {
+    protected ToolMaterial theToolMaterial;
+    public ItemGardenerHoe(Item.ToolMaterial toolMaterial) {
+        super(toolMaterial);
         this.setMaxStackSize(1);
         this.setMaxDamage(toolMaterial.getMaxUses());
         this.setCreativeTab(CreativeTabs.tabTools);
     }
-    //fyi this here was copied directly from the ItemHoe class :P
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
-    {
-        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
-        {
-            return false;
-        }
-        else
-        {
-            UseHoeEvent event = new UseHoeEvent(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
-            if (MinecraftForge.EVENT_BUS.post(event))
-            {
-                return false;
-            }
-
-            if (event.getResult() == Event.Result.ALLOW)
-            {
-                par1ItemStack.damageItem(1, par2EntityPlayer);
-                return true;
-            }
-
-            Block block = par3World.getBlock(par4, par5, par6);
-
-            if (par7 != 0 && par3World.getBlock(par4, par5 + 1, par6).isAir(par3World, par4, par5 + 1, par6) && (block == Blocks.grass || block == Blocks.dirt))
-            {
-                Block block1 = Blocks.farmland;
-                par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), block1.stepSound.getStepResourcePath(), (block1.stepSound.getVolume() + 1.0F) / 2.0F, block1.stepSound.getPitch() * 0.8F);
-
-                if (par3World.isRemote)
-                {
-                    return true;
-                }
-                else
-                {
-                    par3World.setBlock(par4, par5, par6, block1);
-                    par1ItemStack.damageItem(1, par2EntityPlayer);
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    /**
-     * Returns True is the item is renderer in full 3D when hold.
-     */
-    @SideOnly(Side.CLIENT)
-    public boolean isFull3D() {
-        return true;
-    }
-
     /**
      * Returns the name of the material this tool is made from as it is declared in Item.ToolMaterial (meaning diamond
      * would return "EMERALD")
      */
-    public String getToolMaterialName() {
-        return this.theToolMaterial.toString();
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+        return this.theToolMaterial.func_150995_f() == net.minecraft.init.Items.bone;
     }
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
         par3List.add(String.format("%sAn unusually efficient hoe.", EnumChatFormatting.DARK_GREEN));
         par3List.add(String.format("%sSeems to be a long-lasting alternative to stone.", EnumChatFormatting.DARK_GREEN));
     }
+
 }
