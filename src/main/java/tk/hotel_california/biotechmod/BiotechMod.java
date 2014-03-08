@@ -14,7 +14,7 @@ public class BiotechMod {
     @Instance(value="biotechmod")
     public static BiotechMod instance;
     @SidedProxy(clientSide = "tk.hotel_california.biotechmod.client.ClientProxy",
-    serverSide = "tk.hotel_california.biotechmod.CommonProxy")
+            serverSide = "tk.hotel_california.biotechmod.CommonProxy")
     public static CommonProxy proxy;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

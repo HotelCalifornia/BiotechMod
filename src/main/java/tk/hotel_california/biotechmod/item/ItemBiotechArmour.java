@@ -21,6 +21,7 @@ public class ItemBiotechArmour extends ItemArmor {
         super(material, par1, par2);
         this.theMaterial = material;
         this.armourType = par2;
+        this.setMaxStackSize(1); //reassurance? mayhaps
         this.setCreativeTab(CreativeTabs.tabCombat);
     }
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
@@ -43,12 +44,12 @@ public class ItemBiotechArmour extends ItemArmor {
     public void registerIcons(IIconRegister iconRegister) {
         icons = new IIcon[4];
         icons[0] = iconRegister.registerIcon("biotechmod:gardenerHelmet");
-        icons[1] = iconRegister.registerIcon("biotechmod:gardenerChest");
-        icons[2] = iconRegister.registerIcon("biotechmod:gardenerLegs");
-        icons[3] = iconRegister.registerIcon("biotechmod:gardenerBoots");
+        icons[1] =  iconRegister.registerIcon("biotechmod:gardenerChest");
+        icons[2] =   iconRegister.registerIcon("biotechmod:gardenerLegs");
+        icons[3] =  iconRegister.registerIcon("biotechmod:gardenerBoots");
     }
     @Override
     public IIcon getIcon(ItemStack stack, int pass) {
-        return armourType <= 3 ? icons[armorType] : icons[0];
+        return armourType <= 3 && armourType >=0 ? icons[armorType] : icons[0];
     }
 }

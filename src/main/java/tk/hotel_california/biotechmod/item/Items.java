@@ -84,8 +84,12 @@ public class Items {
 
     }
     public static void registerItems() {
-        GameRegistry.registerItem(declareItems.gardenerHoeItem, "gardenerHoeItem");
-        GameRegistry.registerItem(declareItems.gardenerSwordItem, "gardenerSword");
+        GameRegistry.registerItem(declareItems.gardenerHoeItem,           "gardenerHoeItem");
+        GameRegistry.registerItem(declareItems.gardenerSwordItem,           "gardenerSword");
+        GameRegistry.registerItem(declareItems.gardenerHelmetItem,         "gardenerHelmet");
+        GameRegistry.registerItem(declareItems.gardenerChestplateItem, "gardenerChestplate");
+        GameRegistry.registerItem(declareItems.gardenerLeggingsItem,         "gardenerLegs");
+        GameRegistry.registerItem(declareItems.gardenerBootsItem,           "gardenerBoots");
         //todo add more items as I make 'em
     }
     public static void fullRegister() {
