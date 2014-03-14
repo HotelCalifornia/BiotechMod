@@ -8,6 +8,13 @@ this mod is a WIP at the moment, but I'm adding things continually, so check bac
 
 
 
+BUILD
+=====
+You can find the latest builds here:
+http://www.madpcgaming.com:8080/job/BioTech/
+
+
+
 DISCLAIMER
 ==========
 I don't mean to say that you have to find this stuff exciting, or even interesting. If you do, then check back regularly.
