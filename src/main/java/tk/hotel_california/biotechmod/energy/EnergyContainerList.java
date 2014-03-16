@@ -39,7 +39,6 @@ public abstract class EnergyContainerList {
     public static final int BATTERY_CHARGE = 1000;
     public static final ItemStack EMPTY_BATTERY = new ItemStack(Items.declareItems.bioticBatteryItem);
     public static final ItemStack NULL_EMPTYCONTAINER = new ItemStack(Items.declareItems.bioticBatteryItem);
-    //todo add the tier one biotic battery here
 
     private EnergyContainerList() {}
 
