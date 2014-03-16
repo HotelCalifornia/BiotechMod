@@ -30,7 +30,7 @@ public class ItemBiotechArmour extends ItemArmor {
     @SideOnly(Side.CLIENT)
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
-        String texture = "biotechmod:textures/models/BTA_";
+        String texture = "biotechmod:textures/models/BTA_1_";
         switch(this.armourType){
             case 0 : texture += "1.png";
             case 1 : texture += "2.png";

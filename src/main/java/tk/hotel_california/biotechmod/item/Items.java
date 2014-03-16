@@ -20,6 +20,8 @@ public class Items {
         public static Item gardenerChestplateItem;
         public static Item gardenerLeggingsItem;
         public static Item gardenerBootsItem;
+        public static Item hangingEntityItem;
+        public static Item bioticBatteryItem;
         //todo add more items as I make 'em
     }
     public static void InitItems() {
@@ -45,7 +47,9 @@ public class Items {
         declareItems.gardenerBootsItem = new ItemBiotechArmour(BIOTIC_TIER_ONE, proxy.addArmour("gardenerBoots"), 3)
                 .setUnlocalizedName("gardenerBoots")
                 .setTextureName("biotechmod:gardenerBoots");
-
+        declareItems.bioticBatteryItem = new ItemBattery(0)
+                .setUnlocalizedName("bioticBattery");
+                //todo add texture + texture reference
     }
     public static void registerRecipes() {
         ItemStack tierOneHoe = new ItemStack(declareItems.gardenerHoeItem,1);
@@ -76,6 +80,10 @@ public class Items {
         GameRegistry.addRecipe(tierOneBoots, "w w", "x x", "   ",
                 'w', net.minecraft.init.Items.leather,
                 'x', net.minecraft.init.Items.bone);
+        ItemStack hangingEntityItem = new ItemStack(declareItems.hangingEntityItem);
+        GameRegistry.addRecipe(hangingEntityItem, "www", "wxw", "www",
+                'w', net.minecraft.init.Items.bone,
+                'x', net.minecraft.init.Items.leather);
     }
     public static void registerShapelessRecipes() {
 
@@ -90,6 +98,7 @@ public class Items {
         GameRegistry.registerItem(declareItems.gardenerChestplateItem, "gardenerChestplate");
         GameRegistry.registerItem(declareItems.gardenerLeggingsItem,         "gardenerLegs");
         GameRegistry.registerItem(declareItems.gardenerBootsItem,           "gardenerBoots");
+        GameRegistry.registerItem(declareItems.hangingEntityItem,       "hangingEntityItem");
         //todo add more items as I make 'em
     }
     public static void fullRegister() {
