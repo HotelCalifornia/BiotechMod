@@ -41,5 +41,5 @@ public interface IEnergyContainer {
      *          If false, the drain will only be simulated
      * @return Amount of energy that was drained form the container
      */
-    EnergyStack drain(ItemStack container, int maxDrain, boolean doDrain);
+    int drain(ItemStack container, int maxDrain, boolean doDrain);
 }

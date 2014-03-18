@@ -93,7 +93,7 @@ public abstract class EnergyContainerList {
             return false;
         }
         EnergyContainerData data = filledContainerMap.get(new ContainerKey(container, energy));
-        return data == null ? false : data.energy.isEnergyEqual(energy);
+        return data != null && data.energy.isEnergyEqual(energy);
     }
     public static boolean isBattery(ItemStack container) {
         if(container == null) {

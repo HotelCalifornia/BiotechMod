@@ -5,6 +5,8 @@ package tk.hotel_california.biotechmod.energy;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.Locale;
+
 
 public class EnergyStack {
     public int energyID;
@@ -24,13 +26,33 @@ public class EnergyStack {
             tag = (NBTTagCompound)nbt.copy();
         }
     }
-    //this should not be used :P
     public static EnergyStack loadEnergyStackFromNBT(NBTTagCompound nbt) {
-       return null;
+        if(nbt == null) {
+            return null;
+        }
+        String energyName = nbt.getString("EnergyName");
+        if(energyName == null) {
+            energyName = nbt.hasKey("EnergyName") ? nbt.getString("EnergyName").toLowerCase(Locale.ENGLISH) : null;
+        }
+        if(energyName == null || EnergyList.getEnergy(energyName) == null) {
+            return null;
+        }
+        EnergyStack stack = new EnergyStack(EnergyList.getEnergyID(energyName), nbt.getInteger("Amount"));
+        if(nbt.hasKey("Tag")) {
+            stack.tag = nbt.getCompoundTag("Tag");
+        }
+        else if(nbt.hasKey("extra")) {
+            stack.tag = nbt.getCompoundTag("extra");
+        }
+        return stack;
     }
-    //nor should this
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        return null;
+        nbt.setString("EnergyName", EnergyList.getEnergyName(energyID));
+        nbt.setInteger("Amount", amount);
+        if(tag != null) {
+            nbt.setTag("Tag", tag);
+        }
+        return nbt;
     }
     public final Energy getEnergy() {
         return EnergyList.getEnergy(energyID);

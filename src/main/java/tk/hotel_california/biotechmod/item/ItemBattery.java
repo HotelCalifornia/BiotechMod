@@ -2,9 +2,6 @@ package tk.hotel_california.biotechmod.item;
 //girl do you know Java?
 //because your method body is sexy!
 
-import net.minecraft.item.ItemStack;
-import tk.hotel_california.biotechmod.energy.EnergyStack;
-
 public class ItemBattery extends ItemEnergyContainer {
     public final int itemTier;
     public ItemBattery(int tier) {
