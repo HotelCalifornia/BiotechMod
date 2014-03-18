@@ -16,7 +16,7 @@ public class GuiHandler implements IGuiHandler {
         if(tileEntity != null) {
             switch(id) {
                 case 0 : if(tileEntity instanceof TileEntityEnergyContainer) {
-                            return new ContainerPower
+                            return new GuiPower
                                 (player.inventory,
                                 (TileEntityEnergyContainer)tileEntity,
                                 ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
@@ -32,7 +32,7 @@ public class GuiHandler implements IGuiHandler {
         if(tileEntity != null) {
             switch(id) {
                 case 0 : if(tileEntity instanceof TileEntityEnergyContainer) {
-                    return new ContainerPower
+                    return new GuiPower
                             (player.inventory,
                                     (TileEntityEnergyContainer)tileEntity,
                                     ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));

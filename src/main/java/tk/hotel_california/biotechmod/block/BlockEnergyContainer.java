@@ -52,7 +52,7 @@ public class BlockEnergyContainer extends BlockContainer {
             return;
         }
         IInventory inventory = (IInventory) tileEntity;
-        for(int i = 0; i < inventory.getSizeInventory(); i++) {
+        for(int i = 0; i < inventory.getSizeInventory() - 1; i++) {
             ItemStack item = inventory.getStackInSlot(i);
             if(item != null && item.stackSize > 0) {
                 float rx = rand.nextFloat();

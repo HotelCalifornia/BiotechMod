@@ -109,7 +109,10 @@ public class TileEntityEnergyContainer extends TileEntity implements IEnergyCont
 
     @Override
     public ItemStack getStackInSlot(int var1) {
-        return inv[var1];
+        if(var1 <= inv.length - 1) {
+            return inv[var1];
+        }
+        return inv[0];
     }
 
     @Override
