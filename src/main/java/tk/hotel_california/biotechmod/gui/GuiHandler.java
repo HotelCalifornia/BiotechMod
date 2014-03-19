@@ -16,11 +16,18 @@ public class GuiHandler implements IGuiHandler {
         if(tileEntity != null) {
             switch(id) {
                 case 0 : if(tileEntity instanceof TileEntityEnergyContainer) {
+                         try {
                             return new GuiPower
                                 (player.inventory,
                                 (TileEntityEnergyContainer)tileEntity,
                                 ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
                          }
+                         catch(ClassCastException e) {
+                             return new ContainerPower(player.inventory,
+                                     (TileEntityEnergyContainer)tileEntity,
+                                     ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
+                         }
+                }
                 default: return null;
             }
         }
@@ -32,10 +39,17 @@ public class GuiHandler implements IGuiHandler {
         if(tileEntity != null) {
             switch(id) {
                 case 0 : if(tileEntity instanceof TileEntityEnergyContainer) {
-                    return new GuiPower
-                            (player.inventory,
-                                    (TileEntityEnergyContainer)tileEntity,
-                                    ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
+                    try {
+                        return new GuiPower
+                                (player.inventory,
+                                        (TileEntityEnergyContainer)tileEntity,
+                                        ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
+                    }
+                    catch(ClassCastException e) {
+                        return new ContainerPower(player.inventory,
+                                (TileEntityEnergyContainer)tileEntity,
+                                ((TileEntityEnergyContainer) tileEntity).getCapacity((TileEntityEnergyContainer)tileEntity));
+                    }
                 }
                 default: return null;
             }
