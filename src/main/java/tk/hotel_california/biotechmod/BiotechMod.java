@@ -27,12 +27,14 @@ public class BiotechMod {
     public static World world = Minecraft.getMinecraft().theWorld;
     public static final PacketPipeline packetPipeline = new PacketPipeline();
     @EventHandler
+    //called when forge is in the Preinitialization Event
     public void preInit(FMLPreInitializationEvent event) {
         Items.fullRegister();
         Blocks.fullRegister();
         Entities.fullRegister();
     }
     @EventHandler
+    //called when forge is in the Initialization Event
     public void load(FMLInitializationEvent event) {
         packetPipeline.initialise();
         proxy.registerRenderers();
@@ -40,6 +42,7 @@ public class BiotechMod {
         proxy.registerGui();
     }
     @EventHandler
+    //called when forge is in the PostInitialization Event
     public void postInit(FMLPostInitializationEvent event) {
         packetPipeline.postInitialise();
     }
