@@ -11,20 +11,10 @@ import tk.hotel_california.biotechmod.client.ClientProxy;
 import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
 
 public class Entities {
-    public static ClientProxy proxy = new ClientProxy();
-    private static World world = BiotechMod.world;
-    public static class declareEntities {
-        public static TileEntity tileEntityEnergyContainer;
-    }
-    public static void initEntities() {
-        declareEntities.tileEntityEnergyContainer = new TileEntityEnergyContainer(100);
-    }
     public static void registerEntities() {
         GameRegistry.registerTileEntity(TileEntityEnergyContainer.class, "tileEntityEnergyContainer");
     }
     public static void fullRegister() {
-        initEntities();
         registerEntities();
     }
-
 }

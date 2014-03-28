@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Facing;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tk.hotel_california.biotechmod.BiotechMod;
 import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
@@ -64,12 +65,12 @@ public class BlockEnergyContainer extends BlockContainer {
         }
     }
     @Override
-    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitx, float hity, float hitz, int meta) {
-        int opp = Facing.oppositeSide[side];
-        return hasPlacementRotation() ? opp : 0;
+    public boolean shouldSideBeRendered(IBlockAccess access, int x, int y, int z, int side) {
+        return false;
     }
-    private boolean hasPlacementRotation() {
-        return true;
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
     }
     @Override
     public boolean onBlockActivated(World world, int x, int y,int z, EntityPlayer player, int metadata, float hitX, float hitY, float hitZ) {
