@@ -9,10 +9,10 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
-import tk.hotel_california.biotechmod.client.ClientProxy;
+import tk.hotel_california.biotechmod.CommonProxy;
 
 public class Items {
-    public static ClientProxy proxy = new ClientProxy();
+    public static CommonProxy proxy = new CommonProxy();
     public static class declareItems {
         public static Item gardenerHoeItem;
         public static Item gardenerSwordItem;
@@ -20,7 +20,6 @@ public class Items {
         public static Item gardenerChestplateItem;
         public static Item gardenerLeggingsItem;
         public static Item gardenerBootsItem;
-        public static Item hangingEntityItem;
         public static Item bioticBatteryItem;
         //todo add more items as I make 'em
     }
@@ -98,8 +97,7 @@ public class Items {
         GameRegistry.registerItem(declareItems.gardenerChestplateItem, "gardenerChestplate");
         GameRegistry.registerItem(declareItems.gardenerLeggingsItem,         "gardenerLegs");
         GameRegistry.registerItem(declareItems.gardenerBootsItem,           "gardenerBoots");
-        GameRegistry.registerItem(declareItems.bioticBatteryItem,           "bioticBattery");
-        //todo add more items as I make 'em
+        GameRegistry.registerItem(declareItems.bioticBatteryItem,           "bioticBattery");        //todo add more items as I make 'em
     }
     public static void fullRegister() {
         InitItems();

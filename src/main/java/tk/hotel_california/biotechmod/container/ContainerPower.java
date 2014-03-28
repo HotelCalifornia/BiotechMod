@@ -24,30 +24,33 @@ public class ContainerPower extends Container {
         this.te = te;
         this.maxEnergyContained = energyCapacity;
         IInventory inv = new TileEntityEnergyContainer(energyCapacity);
-        this.slot1 = addSlotToContainer(new Slot(inv, 0, 39, 35));
-        this.slot2 = addSlotToContainer(new Slot(inv, 1, 119, 35));
+        this.slot1 = addSlotToContainer(new Slot(inv, 0, 40, 36));
+        this.slot2 = addSlotToContainer(new Slot(inv, 1, 120, 36));
         bindPlayerInventory(inventoryPlayer);
     }
     @Override
     public void detectAndSendChanges() {
-        if(slot1.getStack().getItem() instanceof ItemEnergyContainer) {
-            ItemEnergyContainer e = (ItemBattery)slot1.getStack().getItem();
-            ItemStack container = slot1.getStack();
-            if(this.energyContained + e.getCapacity(container) <= this.maxEnergyContained) {
-                //fills this container and drains from the container in the slot
-                this.energyContained += e.drain(container, e.getCapacity(container), true);
-            }
-            else {
-                this.energyContained += e.drain(container, this.energyContained - e.getCapacity(container), true);
+        if(slot1.getStack() != null && slot2.getStack() != null) {
+
+            if(slot1.getStack().getItem() instanceof ItemEnergyContainer) {
+                ItemEnergyContainer e = (ItemBattery)slot1.getStack().getItem();
+                ItemStack container = slot1.getStack();
+                if(this.energyContained + e.getCapacity(container) <= this.maxEnergyContained) {
+                    //fills this container and drains from the container in the slot
+                    this.energyContained += e.drain(container, e.getCapacity(container), true);
+                }
+                else {
+                    this.energyContained += e.drain(container, this.energyContained - e.getCapacity(container), true);
+                }
             }
 
-        }
-        if(slot2.getStack().getItem() instanceof ItemEnergyContainer) {
-            ItemEnergyContainer e = (ItemBattery)slot2.getStack().getItem();
-            ItemStack container = slot2.getStack();
-            if(this.energyContained != 0) {
-                //drains this container and fills the container in the slot
-                this.energyContained -= e.fill(container, e.getEnergy(container), true);
+            if(slot2.getStack().getItem() instanceof ItemEnergyContainer) {
+                ItemEnergyContainer e = (ItemBattery)slot2.getStack().getItem();
+                ItemStack container = slot2.getStack();
+                if(this.energyContained != 0) {
+                    //drains this container and fills the container in the slot
+                    this.energyContained -= e.fill(container, e.getEnergy(container), true);
+                }
             }
         }
         super.detectAndSendChanges();

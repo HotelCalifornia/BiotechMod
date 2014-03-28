@@ -12,6 +12,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Facing;
 import net.minecraft.world.World;
 import tk.hotel_california.biotechmod.BiotechMod;
 import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
@@ -30,15 +31,6 @@ public class BlockEnergyContainer extends BlockContainer {
         }
         setCreativeTab(CreativeTabs.tabAllSearch);
         this.capacity = capacity;
-    }
-    @Override
-    public boolean onBlockActivated(World world, int x, int y,int z, EntityPlayer player, int metadata, float hitX, float hitY, float hitZ) {
-        TileEntity tileEntity = world.getTileEntity(x, y, z);
-        if(tileEntity == null || player.isSneaking()) {
-            return false;
-        }
-        player.openGui(BiotechMod.instance, 0, world, x, y, z);
-        return true;
     }
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
@@ -70,6 +62,23 @@ public class BlockEnergyContainer extends BlockContainer {
                 item.stackSize = 0;
             }
         }
+    }
+    @Override
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitx, float hity, float hitz, int meta) {
+        int opp = Facing.oppositeSide[side];
+        return hasPlacementRotation() ? opp : 0;
+    }
+    private boolean hasPlacementRotation() {
+        return true;
+    }
+    @Override
+    public boolean onBlockActivated(World world, int x, int y,int z, EntityPlayer player, int metadata, float hitX, float hitY, float hitZ) {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if(tileEntity == null || player.isSneaking()) {
+            return false;
+        }
+        player.openGui(BiotechMod.instance, 0, world, x, y, z);
+        return true;
     }
     @Override
     public TileEntity createNewTileEntity(World world, int n) {

@@ -8,11 +8,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import tk.hotel_california.biotechmod.block.Blocks;
-import tk.hotel_california.biotechmod.gui.GuiHandler;
+import tk.hotel_california.biotechmod.client.ClientProxy;
+import tk.hotel_california.biotechmod.entity.Entities;
 import tk.hotel_california.biotechmod.gui.packethandling.PacketPipeline;
 import tk.hotel_california.biotechmod.item.Items;
 
@@ -23,18 +23,21 @@ public class BiotechMod {
     @SidedProxy(clientSide = "tk.hotel_california.biotechmod.client.ClientProxy",
             serverSide = "tk.hotel_california.biotechmod.CommonProxy")
     public static CommonProxy proxy;
+    public static ClientProxy clientProxy;
     public static World world = Minecraft.getMinecraft().theWorld;
     public static final PacketPipeline packetPipeline = new PacketPipeline();
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         Items.fullRegister();
         Blocks.fullRegister();
+        Entities.fullRegister();
     }
     @EventHandler
     public void load(FMLInitializationEvent event) {
         packetPipeline.initialise();
-        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
         proxy.registerRenderers();
+        proxy.registerTESR();
+        proxy.registerGui();
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {

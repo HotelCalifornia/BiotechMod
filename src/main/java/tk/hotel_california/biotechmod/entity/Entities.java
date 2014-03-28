@@ -3,20 +3,28 @@ package tk.hotel_california.biotechmod.entity;
 //because your method body is sexy!
 
 
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import tk.hotel_california.biotechmod.BiotechMod;
 import tk.hotel_california.biotechmod.client.ClientProxy;
+import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
 
 public class Entities {
     public static ClientProxy proxy = new ClientProxy();
     private static World world = BiotechMod.world;
     public static class declareEntities {
-        public static Entity enhancedFrameEntity;
+        public static TileEntity tileEntityEnergyContainer;
     }
     public static void initEntities() {
-
+        declareEntities.tileEntityEnergyContainer = new TileEntityEnergyContainer(100);
+    }
+    public static void registerEntities() {
+        GameRegistry.registerTileEntity(TileEntityEnergyContainer.class, "tileEntityEnergyContainer");
+    }
+    public static void fullRegister() {
+        initEntities();
+        registerEntities();
     }
 
 }

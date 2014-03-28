@@ -143,7 +143,12 @@ public class TileEntityEnergyContainer extends TileEntity implements IEnergyCont
 
     @Override
     public void setInventorySlotContents(int var1, ItemStack var2) {
-        inv[var1] = var2;
+        try {
+            inv[var1] = var2;
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+            return;
+        }
         if(var2 != null && var2.stackSize > getInventoryStackLimit()) {
             var2.stackSize = getInventoryStackLimit();
         }
