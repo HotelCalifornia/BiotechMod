@@ -3,6 +3,7 @@ package tk.hotel_california.biotechmod.special;
 //because your method body is sexy!
 
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -60,4 +61,9 @@ public class EntityItemRender extends EntityItem {
     public boolean combineItems(EntityItem par1entityitem) {
         return false;
     }
+    @Override
+    public void onCollideWithPlayer(EntityPlayer player) {
+        return;
+    }
+
 }
