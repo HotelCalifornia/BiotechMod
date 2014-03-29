@@ -12,10 +12,6 @@ import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderers() {
-
-    }
-    @Override
-    public void registerTESR() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEnergyContainer.class, new EnergyContainerTESR());
     }
     @Override

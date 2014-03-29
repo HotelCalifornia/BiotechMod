@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -16,12 +17,17 @@ import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tk.hotel_california.biotechmod.BiotechMod;
+import tk.hotel_california.biotechmod.item.Items;
+import tk.hotel_california.biotechmod.special.EntityItemRender;
 import tk.hotel_california.biotechmod.tileentity.TileEntityEnergyContainer;
 
 import java.util.Random;
 
 public class BlockEnergyContainer extends BlockContainer {
     private int capacity;
+    private EntityItem p1;
+    private EntityItem p2;
+    private EntityItem p3;
     protected BlockEnergyContainer(Material material, int capacity) {
         super(material);
         switch(capacity){
@@ -81,6 +87,13 @@ public class BlockEnergyContainer extends BlockContainer {
         player.openGui(BiotechMod.instance, 0, world, x, y, z);
         return true;
     }
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+        this.p1 = new EntityItemRender(world, (float)x + 0.5f, (float)y + 0.375f, (float)z + 0.31f, new ItemStack(Items.declareItems.bioticBatteryItem) );
+        this.p2 = new EntityItemRender(world, (float)x + 0.5f, (float)y + 0.375f, (float)z + 0.5f, new ItemStack(Items.declareItems.bioticBatteryItem)  );
+        this.p3 = new EntityItemRender(world, (float)x + 0.5f, (float)y + 0.375f, (float)z + 0.687f, new ItemStack(Items.declareItems.bioticBatteryItem));
+    }
+
     @Override
     public TileEntity createNewTileEntity(World world, int n) {
         return new TileEntityEnergyContainer(capacity);

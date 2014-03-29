@@ -12,7 +12,4 @@ public class CommonProxy {
         //overridden
         return 0;
     }
-    public void registerTESR() {
-        //overridden
-    }
 }

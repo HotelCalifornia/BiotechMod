@@ -38,7 +38,6 @@ public class BiotechMod {
     public void load(FMLInitializationEvent event) {
         packetPipeline.initialise();
         proxy.registerRenderers();
-        proxy.registerTESR();
         proxy.registerGui();
     }
     @EventHandler
